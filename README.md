@@ -88,6 +88,9 @@ COW React 6기 학습을 위한 리포지토리 입니다.
     <td align="center">
       <a href="https://github.com/leesj0188"><strong>이성진</strong></a>
     </td>
+     <td align="center">
+      <a href="https://github.com/KimDongHyeok0"><strong>김동혁</strong></a>
+    </td>
   </tr>
 </table>
 

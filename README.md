@@ -74,6 +74,9 @@ COW React 6기 학습을 위한 리포지토리 입니다.
     <td align="center" style="padding: 10px;">
       <img src="https://avatars.githubusercontent.com/leesj0188" width="100px" alt="멘토 이성진" style="border-radius: 20%;"/>
     </td>
+    <td align="center" style="padding: 10px;">
+      <img src="https://avatars.githubusercontent.com/KimDongHyeok0" width="100px" alt="멘토 김동혁" style="border-radius: 20%;"/>
+    </td>
   </tr>
   <tr>
     <td align="center">

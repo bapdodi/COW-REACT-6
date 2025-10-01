@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; // react에서 userState 함수를 가져옴
+import { useState } from 'react'; // react에서 userState 함수를 가져옴
 import './App.css';
 
 function App() { // 함수형 컴포넌트 
@@ -11,6 +11,11 @@ function App() { // 함수형 컴포넌트
       setTodos([...todos, { id: Date.now(), text: inputValue, completed: false }]);
       setInputValue(''); // 입력창 비우기
     }
+  };
+
+  // 할 일 삭제 함수
+  const deleteTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
   };
 
   return ( // 화면에 표시할 HTML 같은 코드(JSX)를 반환
@@ -31,7 +36,10 @@ function App() { // 함수형 컴포넌트
       {/* 할 일 목록 표시 */}
       <ul>
         {todos.map(todo => (
-          <li key={todo.id}>{todo.text}</li>
+          <li key={todo.id}>
+            {todo.text}
+            <button onClick={() => deleteTodo(todo.id)}>삭제</button>
+          </li>
         ))}
       </ul>
     </div>

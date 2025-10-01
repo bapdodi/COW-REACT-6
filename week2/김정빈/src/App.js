@@ -15,7 +15,7 @@ function App() { // 함수형 컴포넌트
 
   // 할 일 삭제 함수
   const deleteTodo = (id) => {
-    setTodos(todos.filter(todo => todo.id !== id));
+    setTodos(todos.filter(todo => todo.id !== id)); // 새로운 리스트를 만드는데 키가 일치하는거만 뺌 
   };
 
   return ( // 화면에 표시할 HTML 같은 코드(JSX)를 반환
@@ -28,6 +28,7 @@ function App() { // 함수형 컴포넌트
           type="text" 
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && addTodo()} // 엔터로도 등록할 수 있게 추가
           placeholder="할 일을 입력하세요"
         />
         <button onClick={addTodo}>추가</button>
@@ -35,7 +36,7 @@ function App() { // 함수형 컴포넌트
 
       {/* 할 일 목록 표시 */}
       <ul>
-        {todos.map(todo => (
+        {todos.map(todo => ( //각각의 todo
           <li key={todo.id}>
             {todo.text}
             <button onClick={() => deleteTodo(todo.id)}>삭제</button>

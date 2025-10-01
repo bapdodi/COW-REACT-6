@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-import Calendar from './components/Calendar';
-import TodoForm from './components/TodoForm';
-import TodoList from './components/TodoList';
+import Calendar from './components/Calendar.jsx';
+import TodoForm from './components/TodoForm.jsx';
+import TodoList from './components/TodoList.jsx';
 
 function App() { // 함수형 컴포넌트 
   const [todos, setTodos] = useState([]); //초기값을 빈 배열로 선언, setTodos는 변경 함수

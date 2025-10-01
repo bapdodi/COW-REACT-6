@@ -1,4 +1,3 @@
-
 function Calendar({ selectedDate, onDateSelect, todos }) {
   // 캘린더 생성 함수
   const generateCalendar = () => {
@@ -48,16 +47,27 @@ function Calendar({ selectedDate, onDateSelect, todos }) {
             {day}
           </div>
         ))}
-        {generateCalendar().flat().map((dayInfo, index) => (
+        
+        {generateCalendar().flat().map((dayInfo) => (
           <div
-            key={index}
+            key={dayInfo.dateStr}
             onClick={() => onDateSelect(dayInfo.dateStr)}
             style={{
               padding: '10px',
               textAlign: 'center',
               cursor: 'pointer',
-              backgroundColor: dayInfo.isSelected ? '#007bff' : dayInfo.isToday ? '#e7f3ff' : dayInfo.isCurrentMonth ? 'white' : '#f5f5f5',
-              color: dayInfo.isSelected ? 'white' : dayInfo.isCurrentMonth ? 'black' : '#ccc',
+              backgroundColor: dayInfo.isSelected 
+                ? '#007bff' 
+                : dayInfo.isToday 
+                ? '#e3f2fd' 
+                : dayInfo.isCurrentMonth 
+                ? 'white' 
+                : '#f8f9fa',
+              color: dayInfo.isSelected 
+                ? 'white' 
+                : dayInfo.isCurrentMonth 
+                ? 'black' 
+                : '#999',
               border: '1px solid #ddd',
               position: 'relative'
             }}
@@ -68,7 +78,7 @@ function Calendar({ selectedDate, onDateSelect, todos }) {
                 position: 'absolute',
                 top: '2px',
                 right: '2px',
-                backgroundColor: 'red',
+                backgroundColor: '#ff6b6b',
                 color: 'white',
                 borderRadius: '50%',
                 width: '16px',

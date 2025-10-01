@@ -1,4 +1,4 @@
-import TodoItem from './TodoItem';
+import TodoItem from './TodoItem.jsx';
 
 function TodoList({ todos, selectedDate, onSave, onToggle, onDelete }) {
   // 선택된 날짜의 할 일만 필터링

@@ -9,11 +9,18 @@ function App() { // 함수형 컴포넌트
     const savedTodos = localStorage.getItem('todos');
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // 선택된 날짜
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const savedSelectedDate = localStorage.getItem("selectedDate");
+    return savedSelectedDate ? JSON.parse(savedSelectedDate) : [];
+  });
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
+
+  useEffect(() => {
+    localStorage.setItem('selectedDate', JSON.stringify(selectedDate))
+  }, [selectedDate]);
 
   // 할 일 추가 함수
   const addTodo = (todoData) => {

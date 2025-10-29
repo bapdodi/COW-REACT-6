@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function TodoItem({ todo, onSave, onToggle, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editingText, setEditingText] = useState('');
   const [editingTime, setEditingTime] = useState('');
   const [editingDate, setEditingDate] = useState('');
+  const textInputRef = useRef(null);
 
   // 편집 시작
   const startEdit = () => {
@@ -13,6 +14,21 @@ function TodoItem({ todo, onSave, onToggle, onDelete }) {
     setEditingTime(todo.time || '');
     setEditingDate(todo.date || '');
   };
+  useEffect(() => {
+    if (isEditing) {
+      const el = textInputRef.current;
+      if (el) {
+        requestAnimationFrame(() => {
+          el.focus();
+          const len = el.value?.length ?? 0;
+          try {
+            el.setSelectionRange(len, len);
+          } catch (_) {
+          }
+        });
+      }
+    }
+  }, [isEditing]);
 
   // 편집 저장
   const saveEdit = () => {
@@ -44,6 +60,7 @@ function TodoItem({ todo, onSave, onToggle, onDelete }) {
         <>
           <input 
             type="text"
+            ref={textInputRef}
             value={editingText}
             onChange={(e) => setEditingText(e.target.value)}
             onKeyDown={(e) => {

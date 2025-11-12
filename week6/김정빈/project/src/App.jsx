@@ -1,11 +1,13 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Calendar from './components/Calendar.jsx';
 import TodoForm from './components/TodoForm.jsx';
 import TodoList from './components/TodoList.jsx';
 import useSelectedDate from './hooks/useSelectedDate';
 import useTodos from './hooks/useTodos';
+import TodoDetail from './pages/TodoDetail.jsx';
 
-function App() { // 함수형 컴포넌트 
+function Main() {
   const { todos, addTodo, deleteTodo, saveTodo, toggleTodo } = useTodos();
   const { selectedDate, selectDate } = useSelectedDate();
 
@@ -14,14 +16,12 @@ function App() { // 함수형 컴포넌트
       <h1 className="text-2xl font-bold mb-4">Todo List Calendar</h1>
 
       <div className="flex gap-5">
-        {/* 캘린더 컴포넌트 */}
         <Calendar
           selectedDate={selectedDate}
           onDateSelect={selectDate}
           todos={todos}
         />
 
-        {/* 할 일 관리 영역 */}
         <div className="flex-1 space-y-4">
           <TodoList
             todos={todos}
@@ -35,6 +35,15 @@ function App() { // 함수형 컴포넌트
         </div>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/todos/:id" element={<TodoDetail />} />
+    </Routes>
   );
 }
 

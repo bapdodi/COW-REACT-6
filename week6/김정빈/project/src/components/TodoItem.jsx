@@ -30,7 +30,7 @@ function TodoItem({ todo, onSave, onToggle, onDelete }) {
     }
   }, [isEditing]);
 
-  // 편집 저장
+
   const saveEdit = () => {
     if (editingText.trim() !== '') {
       onSave(todo.id, {
@@ -45,7 +45,7 @@ function TodoItem({ todo, onSave, onToggle, onDelete }) {
     setEditingDate('');
   };
 
-  // 편집 취소
+
   const cancelEdit = () => {
     setIsEditing(false);
     setEditingText('');
@@ -56,7 +56,7 @@ function TodoItem({ todo, onSave, onToggle, onDelete }) {
   return (
     <li>
       {isEditing ? (
-        // 편집 모드
+
         <>
           <input 
             type="text"
@@ -82,7 +82,7 @@ function TodoItem({ todo, onSave, onToggle, onDelete }) {
           <button onClick={cancelEdit}>취소</button>
         </>
       ) : (
-        // 일반 모드
+
         <>
           <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
             {todo.text}

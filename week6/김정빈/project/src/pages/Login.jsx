@@ -13,10 +13,10 @@ export default function Login() {
       const result = await login(username, password);
       console.log('login result:', result);
       if (result && result.id) {
-        localStorage.setItem('memberId', result.id);
+        sessionStorage.setItem('memberId', result.id);
       }
       if (result && result.token) {
-        localStorage.setItem('token', result.token);
+        sessionStorage.setItem('token', result.token);
       }
       
       navigate('/');

@@ -34,8 +34,8 @@ export const login = async (username, password) => {
 
   if (result && result.data) {
     const { token, id } = result.data;
-    if (token) localStorage.setItem('token', token);
-    if (id !== undefined && id !== null) localStorage.setItem('memberId', String(id));
+    if (token) sessionStorage.setItem('token', token);
+    if (id !== undefined && id !== null) sessionStorage.setItem('memberId', String(id));
   }
 
   return result.data;
@@ -46,11 +46,11 @@ export const logout = async () => {
     method: 'POST',
     credentials: 'include',
   });
-  localStorage.removeItem('token');
-  localStorage.removeItem('memberId');
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('memberId');
 };
 
 export const getAuthHeaders = () => {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   return token ? { Authorization: `Bearer ${token}` } : {};
 };

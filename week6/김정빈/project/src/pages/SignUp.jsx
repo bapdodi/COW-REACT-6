@@ -12,8 +12,8 @@ export default function SignUp() {
     e.preventDefault();
     try {
       const result = await signUp(username, password, email);
-      if (result && result.id) localStorage.setItem('memberId', result.id);
-      if (result && result.token) localStorage.setItem('token', result.token);
+      if (result && result.id) sessionStorage.setItem('memberId', result.id);
+      if (result && result.token) sessionStorage.setItem('token', result.token);
       alert('회원가입 성공!');
       navigate('/');
     } catch (error) {

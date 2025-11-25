@@ -13,8 +13,8 @@ function Dashboard() {
 
   const handleLogout = async () => {
     await logout();
-    localStorage.removeItem('memberId');
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('memberId');
+    sessionStorage.removeItem('token');
     navigate('/');
   };
 

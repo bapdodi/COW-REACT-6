@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 export default function Main() {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  const token = typeof window !== 'undefined' ? sessionStorage.getItem('token') : null;
 
   return (
     <div className="max-w-2xl mx-auto mt-12 p-6 bg-white rounded shadow">

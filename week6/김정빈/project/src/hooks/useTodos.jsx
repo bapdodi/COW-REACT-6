@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteTodo as apiDeleteTodo, toggleTodo as apiToggleTodo, createTodo, getTodos, updateTodo } from '../api/todos';
-const getStoredMemberId = () => localStorage.getItem('memberId');
+const getStoredMemberId = () => sessionStorage.getItem('memberId');
 
 export default function useTodos() {
   const navigate = useNavigate();

@@ -1,47 +1,9 @@
-const formatDate = (date) => {
-  const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-  return local.toISOString().split('T')[0];
-};
+import { useMemo } from 'react';
+import { createCalendar } from '../utils/calendar';
 
 function Calendar({ selectedDate, onDateSelect, todos }) {
-  // 캘린더 생성 함수
-  const generateCalendar = () => {
-    const today = new Date();
-    const currentMonth = today.getMonth();
-    const currentYear = today.getFullYear();
-    
-    const firstDay = new Date(currentYear, currentMonth, 1);
-    const startDate = new Date(firstDay);
-    startDate.setDate(startDate.getDate() - firstDay.getDay()); // 일요일부터 시작
-    
-    const calendar = [];
-    const currentDate = new Date(startDate);
-    
-    for (let week = 0; week < 6; week++) {
-      const weekDays = [];
-      for (let day = 0; day < 7; day++) {
-        const dateStr = formatDate(currentDate);
-        const isCurrentMonth = currentDate.getMonth() === currentMonth;
-        const isToday = dateStr === formatDate(today);
-        const isSelected = dateStr === selectedDate;
-        const todoCount = todos.filter(todo => todo.date === dateStr).length;
-        
-        weekDays.push({
-          date: new Date(currentDate),
-          dateStr,
-          isCurrentMonth,
-          isToday,
-          isSelected,
-          todoCount
-        });
-        
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-      calendar.push(weekDays);
-    }
-    
-    return calendar;
-  };
+  // selectedDate: yyyy-mm-dd string
+  const calendar = useMemo(() => createCalendar(selectedDate, todos), [selectedDate, todos]);
 
   return (
     <div className="flex-1">
@@ -56,7 +18,7 @@ function Calendar({ selectedDate, onDateSelect, todos }) {
           </div>
         ))}
 
-        {generateCalendar()
+        {calendar
           .flat()
           .map((dayInfo) => {
             const base =
